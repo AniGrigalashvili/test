@@ -27,7 +27,13 @@ namespace test
 
             //stud.deletestud(x.StudentId);
 
-            stud.Updatestud(x);
+            //stud.Updatestud(x);
+
+            Console.WriteLine(new StudentsData().selectStudent(4).StudentId);
+            Console.WriteLine(new StudentsData().selectStudent(4).F_Name);
+            Console.WriteLine(new StudentsData().selectStudent(4).L_Name);
+            Console.WriteLine(new StudentsData().selectStudent(4).BirthDate);
+
 
         }
     }

@@ -12,23 +12,26 @@ namespace test
 {
     public class StudentsData
     {
-        public void insertstud(Students stud)
+        IConfigurationRoot configuration = null;
+        string connectionString = "";
+        public StudentsData()
         {
             var builder = new ConfigurationBuilder()
-                              .SetBasePath(Directory.GetCurrentDirectory())
-                              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-            IConfigurationRoot configuration = builder.Build();
+            configuration = builder.Build();
+            connectionString = configuration.GetConnectionString("DefaultConnection");
+        }
 
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-
-            SqlConnection mySqlConnection = new SqlConnection(connectionString);
+        public void insertstud(Students stud)
+        {
 
             string sqlQuery = string.Format("Insert into Students (StudentId,F_Name ,L_Name) " + 
                               "Values('{0}','{1}' ,'{2}');",
                               stud.StudentId, stud.F_Name, stud.L_Name);
-  
+
+            SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
             mySqlConnection.Open();
 
@@ -42,13 +45,6 @@ namespace test
         public bool deletestud(int StudentId)
         {
             bool result = false;
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfigurationRoot configuration = builder.Build();
-
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
@@ -75,14 +71,6 @@ namespace test
 
         public void Updatestud(Students stud)
         {
-            
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfigurationRoot configuration = builder.Build();
-
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
@@ -103,19 +91,13 @@ namespace test
 
         public Students selectStudent(int StudentId)
         {
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfigurationRoot configuration = builder.Build();
-
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            SqlConnection mySqlConnection = new SqlConnection(connectionString);
+    
 
             Students result = new Students();
 
             string sqlQuery = String.Format("select * from Students where StudentId = {0}", StudentId);
+
+            SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
             mySqlConnection.Open();
 

@@ -18,21 +18,21 @@ namespace test
 
 
             var x = new Students();
-            x.StudentId = 3;
+            x.StudentId = 9;
             x.F_Name = "asda";
             x.L_Name = "asdada";
             StudentsData stud = new StudentsData();
 
-            //stud.insertstud(x);
+            stud.insertstud(x);
 
             //stud.deletestud(x.StudentId);
 
             //stud.Updatestud(x);
 
-            Console.WriteLine(new StudentsData().selectStudent(4).StudentId);
-            Console.WriteLine(new StudentsData().selectStudent(4).F_Name);
-            Console.WriteLine(new StudentsData().selectStudent(4).L_Name);
-            Console.WriteLine(new StudentsData().selectStudent(4).BirthDate);
+            //Console.WriteLine(new StudentsData().selectStudent(4).StudentId);
+            //Console.WriteLine(new StudentsData().selectStudent(4).F_Name);
+            //Console.WriteLine(new StudentsData().selectStudent(4).L_Name);
+            //Console.WriteLine(new StudentsData().selectStudent(4).BirthDate);
 
 
         }

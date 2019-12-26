@@ -12,7 +12,7 @@ namespace test
 {
     public class StudentsData
     {
-        public void insertstud()
+        public void insertstud(Students stud)
         {
             var builder = new ConfigurationBuilder()
                               .SetBasePath(Directory.GetCurrentDirectory())
@@ -25,9 +25,9 @@ namespace test
 
             SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
-            string sqlQuery = string.Format("Insert into Students (StudentId,F_Name ,L_Name,BirthDate) " + 
-                              "Values('6','ani' ,'grigalashvili','1997-1-27');",
-                              "Select @@Identity", new Students().StudentId, new Students().F_Name, new Students().L_Name);
+            string sqlQuery = string.Format("Insert into Students (StudentId,F_Name ,L_Name) " + 
+                              "Values('{0}','{1}' ,'{2}');",
+                              stud.StudentId, stud.F_Name, stud.L_Name);
   
 
             mySqlConnection.Open();
@@ -73,7 +73,7 @@ namespace test
 
 
 
-        public void Updatestud(int studID)
+        public void Updatestud(Students stud)
         {
             
             var builder = new ConfigurationBuilder()
@@ -87,7 +87,7 @@ namespace test
             SqlConnection mySqlConnection = new SqlConnection(connectionString);
 
             string updateQuery = String.Format("Update Students SET F_Name='{0}', L_Name = '{1}' Where StudentId = {2}",
-               new Students().F_Name, new Students().L_Name, new Students().StudentId);
+               stud.F_Name, stud.L_Name, stud.StudentId);
 
 
 

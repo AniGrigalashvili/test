@@ -120,5 +120,42 @@ namespace test
             return result;
         }
 
+        public List<Students> GetStudents()
+        {
+ 
+            List<Students> result = new List<Students>();
+
+            string sqlQuery = String.Format("select * from Students");
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+ 
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+
+            SqlDataReader dataReader = command.ExecuteReader();
+
+            Students stud = null;
+
+            if (dataReader.HasRows)
+            {
+                while (dataReader.Read())
+                {
+                    stud = new Students();
+
+                    stud.StudentId = Convert.ToInt32(dataReader["StudentId"]);
+                    stud.F_Name = dataReader["F_Name"].ToString();
+                    stud.L_Name = dataReader["L_Name"].ToString();
+                    stud.BirthDate = Convert.ToDateTime(dataReader["BirthDate"]);
+                    stud.Phone = dataReader["Phone"].ToString();
+
+                    result.Add(stud);
+                }
+}
+ 
+            return result;
+ 
+        }
+
     }
 }

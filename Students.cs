@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace test
@@ -7,7 +8,7 @@ namespace test
     public class Students
     {
 
-            public int StudentId { get; set; }
+            [Key] public int StudentId  { get; set; }
 
             public string F_Name { get; set; }
 

@@ -27,8 +27,8 @@ namespace test
         public void insertstud(Students stud)
         {
 
-            string sqlQuery = string.Format("Insert into Students (StudentId,F_Name ,L_Name) " + 
-                              "Values('{0}','{1}' ,'{2}');",
+            string sqlQuery = string.Format("Insert into Students (StudentId, F_Name, L_Name) " + 
+                              "Values('{0}', '{1}', '{2}');",
                               stud.StudentId, stud.F_Name, stud.L_Name);
 
             SqlConnection mySqlConnection = new SqlConnection(connectionString);

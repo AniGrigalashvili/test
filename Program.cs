@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 
 namespace test
 {
@@ -37,15 +38,37 @@ namespace test
             // for ( int i = 0; i < new StudentsData().GetStudents().Count; i++)
             //Console.WriteLine(new StudentsData().GetStudents());
 
-            var result = new StudentsData().GetStudents();
-            foreach (var i in result)
+            //var result = new StudentsData().GetStudents();
+            //foreach (var i in result)
+            //{
+            //    Console.WriteLine(i.StudentId);
+            //    Console.WriteLine(i.F_Name);
+            //    Console.WriteLine(i.L_Name);
+            //    Console.WriteLine(i.Phone);
+            //    Console.WriteLine(i.BirthDate);
+            //}
+
+            //Stud dbContext = new Stud();
+
+            //var data = dbContext.Students.ToList();
+            //foreach (var d in data)
+            //{
+            //    Console.WriteLine(d.F_Name);
+            //}
+
+
+            test.Models.testContext dbContext = new test.Models.testContext();
+
+            var data = dbContext.Persons.ToList();
+            var student = (from d in data where d.Name == "ani       " select d).ToList();
+            foreach (var x in student)
             {
-                Console.WriteLine(i.StudentId);
-                Console.WriteLine(i.F_Name);
-                Console.WriteLine(i.L_Name);
-                Console.WriteLine(i.Phone);
-                Console.WriteLine(i.BirthDate);
+                Console.WriteLine(x.Name);
             }
+
+
+
+
         }
     }
 }
